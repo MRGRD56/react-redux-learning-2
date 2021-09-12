@@ -70,7 +70,7 @@ function App() {
             </Header>
             <Content>
                 <Space direction="vertical">
-                    <Table columns={tableColumns} dataSource={persons}>
+                    <Table columns={tableColumns} dataSource={persons} pagination={false}>
 
                     </Table>
                     <Space>
