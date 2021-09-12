@@ -1,12 +1,21 @@
 import React from 'react';
-import {Table, Tag} from "antd";
-import {useSelector} from "react-redux";
+import {Button, Table, Tag} from "antd";
+import {useDispatch, useSelector} from "react-redux";
 import Person from "../models/Person";
 import {ColumnsType} from "antd/es/table";
 import Text from "antd/es/typography/Text";
+import {DeleteFilled} from "@ant-design/icons";
 
 const PersonsTable = () => {
     const persons = useSelector<Person[], Person[]>(state => state);
+    const dispatchPersons = useDispatch();
+
+    function removePerson(person: Person) {
+        dispatchPersons({
+            type: "REMOVE_PERSON",
+            personToRemove: person
+        });
+    }
 
     const tableColumns: ColumnsType<any> = [
         {
@@ -33,6 +42,15 @@ const PersonsTable = () => {
                     <Tag>{skill}</Tag>
                 ));
             }
+        },
+        {
+            title: "Action",
+            key: "action",
+            render: (_, person: Person) => (
+                <Button type="text" danger onClick={() => removePerson(person)}>
+                    <DeleteFilled/>
+                </Button>
+            )
         }
     ];
 
