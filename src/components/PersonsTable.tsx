@@ -5,14 +5,16 @@ import Person from "../models/Person";
 import {ColumnsType} from "antd/es/table";
 import Text from "antd/es/typography/Text";
 import {DeleteFilled} from "@ant-design/icons";
-
+import {Dispatch} from "redux";
+import AppAction from "../models/actions/AppAction";
+import AppActionType from "../models/actions/AppActionType";
 const PersonsTable = () => {
-    const persons = useSelector<Person[], Person[]>(state => state);
-    const dispatchPersons = useDispatch();
+    const persons = useSelector<any, Person[]>(state => state.persons);
+    const dispatchPersons = useDispatch<Dispatch<AppAction>>();
 
     function removePerson(person: Person) {
         dispatchPersons({
-            type: "REMOVE_PERSON",
+            type: AppActionType.removePerson,
             personToRemove: person
         });
     }
