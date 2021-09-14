@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Layout, Space} from "antd";
 import {Content, Header} from "antd/es/layout/layout";
 import {delay} from "./utils/utils";
@@ -11,6 +11,7 @@ import AppActionType from "./models/actions/AppActionType";
 import "antd/dist/antd.min.css";
 import "./App.scss";
 import Counter from "./components/Counter";
+import fetchPersons from "./store/async-actions/fetchPersons";
 
 function App() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -29,6 +30,11 @@ function App() {
         });
         setIsLoading(false);
     }
+
+    useEffect(() => {
+        // @ts-ignore
+        dispatch(fetchPersons())
+    }, [dispatch]);
 
     function removeLastPerson() {
         dispatch({

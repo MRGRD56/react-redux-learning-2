@@ -20,3 +20,16 @@ const counterReducer: Reducer<Counter | undefined, AppAction> = (state, action) 
 };
 
 export default counterReducer;
+
+export function incrementCounterAction(incrementValue: number): AppAction {
+    return {
+        type: AppActionType.incrementCounter,
+        incrementValue
+    }
+}
+
+export function resetCounterAction(): AppAction {
+    return {
+        type: AppActionType.resetCounter
+    }
+}

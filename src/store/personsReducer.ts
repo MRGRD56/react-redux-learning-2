@@ -26,6 +26,8 @@ const personsReducer: Reducer<Person[] | undefined, AppAction> = (state, action)
     switch (action.type) {
         case AppActionType.addPerson:
             return [...state, action.newPerson!];
+        case AppActionType.addPersons:
+            return [...state, ...action.newPersons!];
         case AppActionType.removeLastPerson:
             return state.filter((p, index) => index !== state.length - 1);
         case AppActionType.removePerson:
