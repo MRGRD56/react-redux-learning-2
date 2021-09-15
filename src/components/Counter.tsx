@@ -5,15 +5,20 @@ import Text from "antd/es/typography/Text";
 import ButtonGroup from "antd/es/button/button-group";
 import {Dispatch} from "redux";
 import AppAction from "../models/actions/AppAction";
-import {incrementCounterAction, resetCounterAction} from "../store/counterReducer";
+import {
+    asyncDecrementCounterAction,
+    asyncIncrementCounterAction,
+    incrementCounterAction,
+    resetCounterAction
+} from "../store/counterReducer";
 
 const Counter: FC = () => {
     const dispatch = useDispatch<Dispatch<AppAction>>();
     const value = useSelector<any, number>(state => state.counter.value);
 
-    function incrementValue(increment: number) {
-        dispatch(incrementCounterAction(increment));
-    }
+    // function incrementValue(increment: number) {
+    //     dispatch(asyncIncrementCounterAction());
+    // }
 
     function resetValue() {
         dispatch(resetCounterAction());
@@ -23,8 +28,8 @@ const Counter: FC = () => {
         <Space>
             <Text>{value}</Text>
             <ButtonGroup>
-                <Button onClick={() => incrementValue(1)}>+1</Button>
-                <Button onClick={() => incrementValue(-1)}>-1</Button>
+                <Button onClick={() => dispatch(asyncIncrementCounterAction())}>+1</Button>
+                <Button onClick={() => dispatch(asyncDecrementCounterAction())}>-1</Button>
             </ButtonGroup>
             <Button onClick={() => resetValue()}>Reset</Button>
         </Space>

@@ -9,9 +9,11 @@ function* incrementWorker() {
 }
 
 function* decrementWorker() {
-
+    yield delay(1000);
+    yield put(incrementCounterAction(-1));
 }
 
 export function* countWatcher() {
     yield takeEvery(AppActionType.asyncIncrementCounter, incrementWorker);
+    yield takeEvery(AppActionType.asyncDecrementCounter, decrementWorker);
 }

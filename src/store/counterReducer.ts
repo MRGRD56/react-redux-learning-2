@@ -28,6 +28,18 @@ export function incrementCounterAction(incrementValue: number): AppAction {
     }
 }
 
+export function asyncIncrementCounterAction(): AppAction {
+    return {
+        type: AppActionType.asyncIncrementCounter
+    }
+}
+
+export function asyncDecrementCounterAction(): AppAction {
+    return {
+        type: AppActionType.asyncDecrementCounter
+    }
+}
+
 export function resetCounterAction(): AppAction {
     return {
         type: AppActionType.resetCounter
